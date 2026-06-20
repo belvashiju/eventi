@@ -2,20 +2,19 @@ var app = angular.module("myapp", ["ngRoute"]);
 
 app.config(function($routeProvider) {
     $routeProvider
-        .when("/", { templateUrl: "templates/welcome.html?v=2", controller: "WelcomeCtrl" })
-        .when("/events", { templateUrl: "templates/events.html?v=2", controller: "EventCtrl" })
+        .when("/", { templateUrl: "templates/events.html?v=2", controller: "EventCtrl" })
         .when("/event/:id", { templateUrl: "templates/event-detail.html?v=2", controller: "EventDetailCtrl" })
         .when("/bookings", { templateUrl: "templates/bookings.html?v=2", controller: "BookingCtrl" })
         .when("/calendar", { templateUrl: "templates/calendar.html?v=2", controller: "CalendarCtrl" })
         .otherwise({ redirectTo: "/" });
 });
 
-// Event Service with hardcoded database arrays
 app.factory("EventService", function() {
     var list = [
         {id: 1, name: "Global Tech Summit", date: "2026-07-15", location: "Bangalore", capacity: 100, booked: 0, price: 500, category: "Tech", description: "AI news updates."},
         {id: 2, name: "Jazz under the Stars", date: "2026-07-22", location: "Mysore", capacity: 80, booked: 0, price: 750, category: "Music", description: "Jazz outdoor music."},
         {id: 3, name: "Food Carnival", date: "2026-07-29", location: "Chennai", capacity: 50, booked: 0, price: 300, category: "Food", description: "Food trucks culinary treats."}
+        
     ];
     return {
         get: () => list,
@@ -23,7 +22,6 @@ app.factory("EventService", function() {
     };
 });
 
-// Booking Service handling confirmed tickets
 app.factory("BookingService", function() {
     var bookings = [];
     return {
@@ -38,9 +36,6 @@ app.factory("BookingService", function() {
         cancel: b => { b.event.booked -= b.tickets; bookings.splice(bookings.indexOf(b), 1); }
     };
 });
-
-// Controllers Section
-app.controller("WelcomeCtrl", function($scope) {});
 
 app.controller("EventCtrl", function($scope, EventService) {
     $scope.events = EventService.get();
