@@ -1,0 +1,25 @@
+/* Formal Typography settings (Playfair Display for headers, Inter for body) */
+body { background-color: #f8fafc; font-family: 'Inter', sans-serif; padding-top: 10px; color: #1e293b; }
+h1, h2, h3, h4, h5, h6, .navbar-brand { font-family: 'Playfair Display', serif; font-weight: 700; color: #0f172a; }
+
+/* Formal Welcome Page Jumbotron Hero banner with gradient */
+.welcome-hero { background: linear-gradient(135deg, #1e3a8a, #3b82f6); border: none; }
+
+/* Card hover transitions & shadow overrides */
+.card { margin-bottom: 20px; border-radius: 12px; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #e2e8f0; background-color: #fff; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(148,163,184,0.12); }
+.nav-link { transition: color 0.2s; }
+.nav-link:hover { color: #3b82f6 !important; }
+
+/* Focus and validation glowing states */
+.form-control { border-radius: 8px; transition: border 0.2s, box-shadow 0.2s; }
+.form-control:focus { box-shadow: 0 0 0 3px rgba(59,130,246,0.15); border-color: #3b82f6; }
+.form-control.ng-invalid.ng-touched { border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239,68,68,0.15); }
+.form-control.ng-valid.ng-touched { border-color: #10b981; }
+
+/* Calendar grid layout */
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.calendar-day { min-height: 90px; background-color: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px; transition: transform 0.2s, border 0.2s; }
+.calendar-day:hover:not(.empty) { transform: scale(1.03); border-color: #3b82f6; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+.calendar-day.empty { background-color: #f1f5f9; opacity: 0.6; }
+.day-num { font-size: 0.95rem; color: #64748b; }

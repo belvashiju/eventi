@@ -1,0 +1,21 @@
+<div class="row mb-3">
+    <div class="col-md-6"><input type="text" class="form-control" placeholder="Search..." ng-model="search"></div>
+    <div class="col-md-6">
+        <select class="form-control" ng-model="cat">
+            <option value="">-- All Categories --</option>
+            <option value="Tech">Tech</option><option value="Music">Music</option><option value="Food">Food</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div ng-repeat="e in events | filter:search | filter:{category:cat}" class="col-md-4">
+        <div class="card shadow-sm p-3">
+            <span class="badge badge-info align-self-start">{{e.category}}</span>
+            <h5 class="mt-2">{{e.name}}</h5>
+            <p class="text-muted mb-1">{{e.location}} | {{e.date | date:'mediumDate'}}</p>
+            <p class="font-weight-bold text-primary mb-1">{{e.price | currency:"₹ "}}</p>
+            <p class="text-sm">Seats: <b>{{e.booked}} / {{e.capacity}}</b></p>
+            <a ng-href="#!/event/{{e.id}}" class="btn btn-primary btn-block btn-sm">View & Book</a>
+        </div>
+    </div>
+</div>

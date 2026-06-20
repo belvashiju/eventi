@@ -1,0 +1,14 @@
+<h2 class="text-center mb-4">July 2026 Grid</h2>
+<div class="row text-center font-weight-bold bg-dark text-white py-2 mx-0 rounded-top">
+    <div class="col">Sun</div><div class="col">Mon</div><div class="col">Tue</div>
+    <div class="col">Wed</div><div class="col">Thu</div><div class="col">Fri</div><div class="col">Sat</div>
+</div>
+<div class="calendar-grid">
+    <div class="calendar-day empty" ng-repeat="p in [1,2,3]"></div>
+    <div class="calendar-day" ng-repeat="cell in calendarDays">
+        <div class="day-num font-weight-bold">{{cell.day}}</div>
+        <div class="day-events mt-1" ng-repeat="e in cell.events">
+            <a ng-href="#!/event/{{e.id}}" class="badge badge-primary text-truncate d-block mb-1">{{e.name}}</a>
+        </div>
+    </div>
+</div>

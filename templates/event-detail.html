@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h2>{{event.name}}</h2>
+            <p class="text-muted">{{event.location}} | {{event.date | date:'fullDate'}}</p>
+            <p>{{event.description}}</p>
+            <h4>{{event.price | currency:"₹ "}}</h4>
+            <p>Available seats: {{event.capacity - event.booked}}</p>
+            <a href="#!/" class="btn btn-secondary btn-sm mt-3">Back</a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card p-4" ng-if="event.booked < event.capacity && isFuture(event.date)">
+            <h3>Book Tickets</h3>
+            <form name="form" ng-submit="book()" novalidate>
+                <div class="form-group"><label>Name *</label><input type="text" class="form-control" ng-model="name" required></div>
+                <div class="form-group">
+                    <label>Email *</label><input type="email" name="eml" class="form-control" ng-model="email" required>
+                    <small class="text-danger" ng-if="form.eml.$invalid && form.eml.$touched">Valid email required.</small>
+                </div>
+                <div class="form-group"><label>Tickets *</label><input type="number" class="form-control" ng-model="tickets" min="1" max="{{event.capacity - event.booked}}" required></div>
+                <button type="submit" class="btn btn-success btn-block" ng-disabled="form.$invalid">Confirm Book</button>
+            </form>
+        </div>
+        <div class="alert alert-danger" ng-if="event.booked >= event.capacity">Sold Out!</div>
+        <div class="alert alert-warning" ng-if="!isFuture(event.date)">Event date passed.</div>
+    </div>
+</div>
